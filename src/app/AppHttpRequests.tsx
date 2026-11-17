@@ -2,13 +2,24 @@ import {type ChangeEvent, type CSSProperties, useEffect, useState} from 'react'
 import Checkbox from '@mui/material/Checkbox'
 import {CreateItemForm} from '@/common/components/CreateItemForm/CreateItemForm'
 import {EditableSpan} from '@/common/components/EditableSpan/EditableSpan'
+import axios from 'axios'
+
+const apiKey = '040f6ebf-f516-44f8-af71-1c8422758929'
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxOTA3IiwibG9naW4iOiJqZW55YXp1Y2hrb3YiLCJpYXQiOjE3OTQ5NDMyNzgsImV4cCI6MTc5NDk1MDQ3OCwianRpIjoiZDc4OWYwYjMtMWYwMS00ZjdjLWE1NDYtYzkwYTI2MTQyODlhIn0.kKafSTBc22hRIFI4b6sC0TEmPp2NkvAK5zXMA1RqgTk"
 
 export const AppHttpRequests = () => {
   const [todolists, setTodolists] = useState<any>([])
   const [tasks, setTasks] = useState<any>({})
 
   useEffect(() => {
-    // get todolists
+    axios.get("https://trelly.it-incubator.app/api/1.0/boards/my", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "api-key": apiKey,
+      }
+    }).then((res) => {
+      console.log(res.data)
+    })
   }, [])
 
   const createTodolist = (title: string) => {}
